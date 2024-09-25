@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Web APP Pedro Peroni</title>
+</head>
+<style>
+  body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+  }
+
+  .container {
+      width: 90%;
+      max-width: 600px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+  }
+
+  form {
+      margin-bottom: 20px;
+  }
+
+  input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+  }
+
+  button {
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+  }
+
+  button:hover {
+      background-color: #0056b3;
+  }
+
+  .movie-info {
+    margin-top: 20px;
+    text-align: left;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-info img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+  .movie-info div {
+      margin-bottom: 10px;
+  }
+</style>
+<body>
+  <div class="container">
+    <h1>Search for a movie in the form below</h1>
+    <form action="/movie/search" method="GET">
+      <input type="text" name="movieName" placeholder="Enter movie name" required>
+      <button type="submit">Search</button>
+    </form>
+
+    <% if (error) { %>
+      <p style="color: red;"><%= error %></p>
+    <% } %>
+
+    <% if (movie) { %>
+      <div class="movie-info">
+        <img src="<%= movie.Poster %>" alt="Movie Poster">
+        <div><strong>Title:</strong> <%= movie.Title %></div>
+        <div><strong>Released:</strong> <%= movie.Released %></div>
+        <div><strong>Genre:</strong> <%= movie.Genre %></div>
+        <div><strong>Director:</strong> <%= movie.Director %></div>
+        <div><strong>Actors:</strong> <%= movie.Actors %></div>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
